@@ -4,6 +4,8 @@ import mongoose from 'mongoose'
 import validator from 'validator'
 import { Schema } from 'mongoose'
 
+//TODO: lägg till mobil, age,  sen verifiering av allt.
+
 export interface IUser {
   _id: string
   firstname?: string
@@ -48,5 +50,3 @@ const userSchema = new Schema<IUser>({
 const UserModel = mongoose.model('UserModel', userSchema)
 
 export default UserModel
-
-// age

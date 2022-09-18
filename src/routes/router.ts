@@ -13,10 +13,10 @@ import { loginRouter } from './login-router'
 import { refreshRouter } from './refresh-router'
 
 const router: Router = express.Router()
-
+// TODO: Gå igenom alla och ta bort ts-nocheck.
+router.use('/login', loginRouter)
 router.use('/user', userRouter)
 router.use('/users', usersRouter)
-router.use('/login', loginRouter)
 router.use('/refresh', refreshRouter)
 
 // Catch 500 as last route
