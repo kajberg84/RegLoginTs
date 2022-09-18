@@ -1,7 +1,7 @@
 {
-  "name": "pastries-user-service",
+  "name": "ts-login",
   "version": "0.0.1",
-  "description": "In this assignment, you will implement a web API following the theory of REST. ",
+  "description": "Login register using TS",
   "scripts": {
     "start": "node dist/server.js",
     "postinstall": "tsc",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.lnu.se:1dv027/student/kb223aw/api-design-assignment.git"
+    "url": "git@github.com:kajberg84/RegLoginTs.git"
   },
   "engines": { "node": "16" },
   "keywords": [],

@@ -11,8 +11,6 @@ export interface IUser {
   password: string
   email?: string
   friends?: string[]
-  favouritePastries?: string[]
-  favouriteStores?: string[]
   permissionLevel?: Number
   avatar?: string
   dateOfEntry?: Date
@@ -35,8 +33,6 @@ const userSchema = new Schema<IUser>({
     }
   },
   friends: { type: [String], required: false },
-  favouritePastries: { type: [String], required: false },
-  favouriteStores: { type: [String], required: false },
   permissionLevel: Number,
   dateOfEntry: {
     type: Date,

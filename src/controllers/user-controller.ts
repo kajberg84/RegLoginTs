@@ -12,7 +12,6 @@ import UserModel from '../models/user-model'
 import mongoose from 'mongoose'
 import { Request, Response, NextFunction } from 'express'
 import { hashThisPassword } from '../utils/passwordHandler'
-import { createSearchString } from '../utils/urlHandler'
 import HateoasLinks from '../utils/hateoasLinksUser'
 
 const baseUrl = process.env.BASE_URL
@@ -29,7 +28,6 @@ export class UserController {
    * @param {Function} next - Express next middleware function.
    */
   async create(req: Request, res: Response, next: NextFunction) {
-
     try {
       const { firstname, lastname, email, password } = req.body
       const newUser = new UserModel({
@@ -37,6 +35,7 @@ export class UserController {
         lastname: lastname,
         email: email,
         password: hashThisPassword(password),
+        // password: password,
         permissionLevel: 4
       })
       const createdUser = await newUser.save()

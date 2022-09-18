@@ -12,7 +12,6 @@ import createError from 'http-errors'
 import jwt, { SignOptions } from 'jsonwebtoken'
 import { checkUserPassword } from '../utils/passwordHandler'
 import { Request, Response, NextFunction } from 'express'
-import { getKey } from '../utils/keyHandler'
 import dotenv from 'dotenv'
 import { signJwt } from '../utils/jwtHandler'
 
@@ -48,12 +47,12 @@ export class LoginController {
         permissionLevel: user.permissionLevel
       }
       const accSignOptions: SignOptions = {
-        algorithm: 'RS256',
+        algorithm: 'HS256',
         expiresIn: '10min'
       }
 
       const refSignOptions: SignOptions = {
-        algorithm: 'RS256',
+        algorithm: 'HS256',
         expiresIn: '1000min'
       }
 
