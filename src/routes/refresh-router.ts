@@ -42,7 +42,7 @@
        permissionLevel: validRefreshToken.permissionLevel
      }
      const accSignOptions: SignOptions = {
-       algorithm: 'HS256',
+       algorithm: 'RS256',
        expiresIn: '10min'
      }
      const accessToken = signJwt(payload, accSignOptions)

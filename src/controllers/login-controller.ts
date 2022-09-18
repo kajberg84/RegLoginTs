@@ -47,12 +47,12 @@ export class LoginController {
         permissionLevel: user.permissionLevel
       }
       const accSignOptions: SignOptions = {
-        algorithm: 'HS256',
+        algorithm: 'RS256',
         expiresIn: '10min'
       }
 
       const refSignOptions: SignOptions = {
-        algorithm: 'HS256',
+        algorithm: 'RS256',
         expiresIn: '1000min'
       }
 

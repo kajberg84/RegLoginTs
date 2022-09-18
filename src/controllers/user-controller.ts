@@ -35,7 +35,6 @@ export class UserController {
         lastname: lastname,
         email: email,
         password: hashThisPassword(password),
-        // password: password,
         permissionLevel: 4
       })
       const createdUser = await newUser.save()
