@@ -12,7 +12,7 @@ import UserModel from '../models/user-model'
 import mongoose from 'mongoose'
 import { Request, Response, NextFunction } from 'express'
 import { hashThisPassword } from '../utils/passwordHandler'
-import HateoasLinks from '../utils/hateoasLinksUser'
+import { createSearchString } from '../utils/urlHandler'
 
 const baseUrl = process.env.BASE_URL
 
@@ -67,8 +67,8 @@ export class UserController {
         next(createError(404, 'User with id not found'))
       }
 
-      const hateoas = new HateoasLinks(baseUrl)
-      const response = await hateoas.createLink(dbUser, 'user')
+      // TODO: annat här. Nu rensar hatoeas
+      const response = dbUser
 
       res.status(200).json(response)
     } catch (error) {
@@ -96,8 +96,8 @@ export class UserController {
       const result = await UserModel.find(query).skip(skip).limit(limit).select(searchFields).select('-password')
       console.log('result', result)
 
-      const hateoas = new HateoasLinks(baseUrl)
-      const response = hateoas.createCollectionResponse(result, 'user')
+      // TODO: annat här. Nu rensar hatoeas
+      const response = result
 
       res.status(200).json(response)
     } catch (error) {
@@ -176,8 +176,8 @@ export class UserController {
         next(createError(404, 'User with id not found'))
       }
 
-      const hateoas = new HateoasLinks(baseUrl)
-      const response = await hateoas.createLink(dbUser, 'user')
+      // TODO: fixa
+      const response = dbUser
 
       res.status(200).json(response)
     } catch (error) {
@@ -209,8 +209,8 @@ export class UserController {
         }
       )
 
-      const hateoas = new HateoasLinks(baseUrl)
-      const response = await hateoas.createLink(dbUser, 'user')
+      // TODO: fixa
+      const response = dbUser
 
       res.status(200).json(response)
     } catch (error) {
