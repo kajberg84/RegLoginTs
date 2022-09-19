@@ -83,7 +83,7 @@ export class UserController {
         next(createError(404, 'User with id not found'))
       }
 
-      // TODO: annat här. Nu rensar hatoeas
+      // TODO: annat här. fixa annan response?
       const response = dbUser
 
       res.status(200).json(response)
@@ -106,15 +106,13 @@ export class UserController {
     const skip = req.query.skip || 0
     const limit = req.query.limit || 0
     const urlFields = req.query.fields || ''
-    // const urlFields = (req.query.fields as string) || ''
-
     const searchFields = createSearchString(urlFields)
 
     try {
       const result = await UserModel.find(query).skip(skip).limit(limit).select(searchFields).select('-password')
       console.log('result', result)
 
-      // TODO: annat här. Nu rensar hatoeas
+      // TODO: annat här. fixa annan response?
       const response = result
 
       res.status(200).json(response)
@@ -163,6 +161,7 @@ export class UserController {
       next(createError(409, 'Can not delete user'))
     }
   }
+
   /**
    * Add friend by id.
    *
@@ -227,7 +226,7 @@ export class UserController {
         }
       )
 
-      // TODO: fixa
+      // TODO: fixa annan response?.
       const response = dbUser
 
       res.status(200).json(response)

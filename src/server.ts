@@ -10,11 +10,6 @@ import { Request, Response, NextFunction } from 'express'
 import { connectDB } from './mongoose/mongoose'
 dotenv.config()
 
-interface Error {
-  status?: number
-  message?: string
-}
-
 try {
   /**
    * The main function of the server.
@@ -22,11 +17,6 @@ try {
   const main = async () => {
     // Connect to DB
     await connectDB()
-
-    interface Error {
-      status?: number
-      message?: string
-    }
 
     const app = express()
 
@@ -93,7 +83,7 @@ try {
     app.use('/', router)
 
     // Error handler.
-    app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    app.use((err: CatchError, req: Request, res: Response, next: NextFunction) => {
       err.status = err.status || 500
 
       res.status(err.status).json({
@@ -110,6 +100,6 @@ try {
   }
 
   main()
-} catch (err: any) {
-  console.log('Server setup: ', err.message)
+} catch (err: unknown) {
+  console.log('Server setup: ', err)
 }

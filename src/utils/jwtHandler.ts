@@ -1,15 +1,14 @@
-// @ts-nocheck
-
+//@ts-nocheck
 // jwtHandler.js
 
-import jwt from 'jsonwebtoken'
+import jwt, { GetPublicKeyOrSecret, Secret, SignOptions } from 'jsonwebtoken'
 import createError from 'http-errors'
 import { Request, Response, NextFunction } from 'express'
 import dotenv from 'dotenv'
 import { getKey } from './keyHandler'
 dotenv.config()
 
-export const signJwt = (payload: any, options: any) => {
+export const signJwt = (payload: object, options: SignOptions) => {
   const privateKey = getKey('private-key.pem')
   return jwt.sign(payload, privateKey, options)
 }
@@ -46,6 +45,8 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
     next(createError(403, 'Invalid token'))
   }
 }
+
+type Permission = number | undefined
 
 /**
  * Authorize requests.

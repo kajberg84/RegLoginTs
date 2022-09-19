@@ -16,9 +16,11 @@ const router: Router = express.Router()
 // TODO: Gå igenom alla och ta bort ts-nocheck.
 //Login router controller done
 router.use('/login', loginRouter)
-// User router 
+// User router Done
 router.use('/user', userRouter)
+// users router Done
 router.use('/users', usersRouter)
+// refresh router 
 router.use('/refresh', refreshRouter)
 
 // Catch 500 as last route

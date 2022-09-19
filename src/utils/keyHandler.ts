@@ -1,7 +1,6 @@
-// @ts-nocheck
-
 import fs from 'fs'
 import path from 'path'
+import { Secret } from 'jsonwebtoken'
 
 /**
  * Read keys from file.
@@ -10,12 +9,12 @@ import path from 'path'
  * @returns { string } - Secret key.
  */
 
-export const getKey = (keyName) => {
+export const getKey = (keyName: string) => {
   try {
     const keyPath = path.join(__dirname, '../../keys/' + keyName)
-    const key = fs.readFileSync(keyPath, 'utf8')
+    const key: Secret = fs.readFileSync(keyPath, 'utf8')
     return key
-  } catch (error) {
+  } catch (error: unknown) {
     console.log('error i getKey: ', error)
   }
 }

@@ -10,10 +10,10 @@ export interface IUser {
   _id: string
   firstname?: string
   lastname?: string
-  password: string
+  password?: string
   email?: string
   friends?: string[]
-  permissionLevel?: Number
+  permissionLevel: Number | undefined
   avatar?: string
   dateOfEntry?: Date
   lastUpdated?: Date
