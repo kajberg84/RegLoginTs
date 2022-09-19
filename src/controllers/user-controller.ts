@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 /**
  * Module for the User Controller.
  *
@@ -14,7 +12,26 @@ import { Request, Response, NextFunction } from 'express'
 import { hashThisPassword } from '../utils/passwordHandler'
 import { createSearchString } from '../utils/urlHandler'
 
-const baseUrl = process.env.BASE_URL
+// const baseUrl = process.env.BASE_URL
+
+interface ReqQuery {
+  firstname?: string
+  lastname?: string
+  password?: string
+  skip?: number
+  limit?: number
+  fields?: string
+}
+
+interface ReqParams {
+  /* Add something as needed */
+}
+interface ReqBody {
+  /* Add something as needed */
+}
+interface Resbody {
+  /* Add something as needed */
+}
 
 /**
  * Encapsulates a controller.
@@ -53,11 +70,10 @@ export class UserController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
+
   async getUser(req: Request, res: Response, next: NextFunction) {
-    const urlFields = req.query.fields || ''
-    const searchFields = createSearchString(urlFields)
     try {
-      const dbUser = await UserModel.findOne({ _id: req.params.id }).select(searchFields).select('-password')
+      const dbUser = await UserModel.findOne({ _id: req.params.id })
 
       if (!dbUser) {
         next(createError(404, 'User with id not found'))
@@ -84,11 +100,13 @@ export class UserController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
-  async getAll(req: Request, res: Response, next: NextFunction) {
+
+  async getAll(req: Request<ReqParams, ReqBody, Resbody, ReqQuery>, res: Response, next: NextFunction) {
     const query = req.query
     const skip = req.query.skip || 0
     const limit = req.query.limit || 0
     const urlFields = req.query.fields || ''
+    // const urlFields = (req.query.fields as string) || ''
 
     const searchFields = createSearchString(urlFields)
 

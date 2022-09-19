@@ -38,6 +38,7 @@ export class LoginController {
       if (!checkPassword) {
         throw createError(401, 'Invalid credentials')
       }
+
       // Creating payload for jwt
       const payload = {
         _id: user._id,

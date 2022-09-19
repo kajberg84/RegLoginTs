@@ -14,7 +14,9 @@ import { refreshRouter } from './refresh-router'
 
 const router: Router = express.Router()
 // TODO: Gå igenom alla och ta bort ts-nocheck.
+//Login router controller done
 router.use('/login', loginRouter)
+// User router 
 router.use('/user', userRouter)
 router.use('/users', usersRouter)
 router.use('/refresh', refreshRouter)
